@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import axios from 'axios'
+import api from './../../services/api'
 import AuthenticationContext from './AuthenticationContext'
 import authenticationReducer from './AuthenticationReducer'
 import setAuthenticationToken from './../../security/setAuthenticationToken'
@@ -25,7 +25,7 @@ const AuthenticationState = (props) => {
         } 
 
         try {
-            const response = await axios.get('/api/authentication');
+            const response = await api.get('/api/authentication');
 
             dispatch( { type: USER_LOADED, payload: response.data })
         } catch (error) {
@@ -41,7 +41,7 @@ const AuthenticationState = (props) => {
             }
         }
         try {
-            const response = await axios.post('/api/users', formData, config);
+            const response = await api.post('/api/users', formData, config);
 
             dispatch({ type: REGISTER_SUCCESS, payload: response.data })
 
@@ -64,7 +64,7 @@ const AuthenticationState = (props) => {
         };
 
         try {
-            const response = await axios.post('/api/authentication', formData, config);
+            const response = await api.post('/api/authentication', formData, config);
 
             dispatch({ type: LOGIN_SUCCESS, payload: response.data})
 

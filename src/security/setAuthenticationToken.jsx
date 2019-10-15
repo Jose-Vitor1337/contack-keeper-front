@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from './../services/api'
 
 /* 
     This is very important, this will permantly reload the token in the localStorage when 
@@ -7,9 +7,9 @@ import axios from 'axios';
 
 const setAuthenticationToken = (token) => {
     if ( token ) {
-        axios.defaults.headers.common['x-auth-token'] = token;
+        api.defaults.headers.common['x-auth-token'] = token;
     } else {
-        delete axios.defaults.headers.common['x-auth-token']; 
+        delete api.defaults.headers.common['x-auth-token']; 
     }
 }
 
